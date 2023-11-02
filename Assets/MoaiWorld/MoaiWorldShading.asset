@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d5924c74bf24ba884954584740ecab, type: 3}
+  m_Name: MoaiWorldShading
+  m_EditorClassIdentifier: 
+  randomize: 0
+  shadingDataCompute: {fileID: 7200000, guid: b2f4a40b345597cb89231ddc3215447d, type: 3}
+  terrainMaterial: {fileID: 2100000, guid: 3e841d4c7cac14bc3ac6b5bf07d2c59b, type: 2}
+  seed: 10
+  shoreHeight: 0.01
+  planesHeight: 0.1
+  mountainsHeight: 1
+  peaksHeight: 2
+  biome:
+    size: 2
+    sharpness: 4.98
+    randomizeStrength: 0.752
+    randomizeSharpness: 4.8
+  steepness:
+    threshold: 1.209
+    dropoff: 0.571
+    sharpness: 2.05
+  colors:
+    flatUnderwater: {r: 0, g: 0, b: 0, a: 0}
+    steepUnderwater: {r: 0.20486724, g: 0.24528301, b: 0.20478816, a: 0}
+    shores: {r: 0.8396226, g: 0.81381047, b: 0.60595405, a: 0}
+    grassA: {r: 0.14983091, g: 0.3490566, b: 0.16179441, a: 0}
+    grassB: {r: 0.40392157, g: 0.7764706, b: 0.34901962, a: 0}
+    steepA: {r: 0.6037736, g: 0.57496256, b: 0.52118194, a: 0}
+    steepB: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 0}
+    snow: {r: 1, g: 1, b: 1, a: 0}

@@ -1,0 +1,56 @@
+#pragma kernel ComputePlanetHeight
+
+#include "../Include/noise.gcinc"
+
+StructuredBuffer<float3> vertices;
+RWStructuredBuffer<float> heights;
+uint numVertices;
+
+float4 noiseOffset;
+
+float planetSize;
+float4 continentNoiseParams;
+float4 continentNoiseOffset;
+
+float mountainElevation;
+float mountainMask;
+float4 mountainNoiseParams;
+float4 mountainNoiseOffset;
+
+float planesSmoothing;
+float4 planesNoiseParams;
+float4 planesNoiseOffset;
+
+float oceanBed;
+float oceanDepth;
+float oceanSmoothing;
+
+[numthreads(16, 1, 1)]
+void ComputePlanetHeight(uint id : SV_DispatchThreadID)
+{
+    if (id >= numVertices) { return; }
+    float3 vertexPos = vertices[id];
+
+    // draws the basic continent lines, what underwater, what's land, used later as a mask for mountains
+    float continent = spnoise(vertexPos, continentNoiseOffset.xyz, continentNoiseParams);
+    
+    // flatten ocean bed and deepen oceans
+    float ocean = -oceanBed + continent * 0.15;
+    continent = smoothMax(continent, ocean, oceanSmoothing);
+    continent *= (continent < 0) ? 1 + oceanDepth : 1;
+
+    // draws the mountains
+    float mountain = rpnoise(vertexPos, mountainNoiseOffset.xyz, mountainNoiseParams);
+
+    float mask = spnoise(vertexPos, planesNoiseOffset.xyz, planesNoiseParams) - mountainMask;
+    mask /= (1 - mountainMask);
+    mask = Blend(0, planesSmoothing + 2 - mountain, mask);
+
+    mountain = pow(mountain, mountainNoiseParams.w);
+    mountain *= mountainElevation;
+    mountain *= mask;
+
+    float finalHeight = 1 + (continent + mountain) * 0.01;
+
+    heights[id] = planetSize * finalHeight;
+}

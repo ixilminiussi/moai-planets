@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2dce1aa2ebec5bac0d467aac106bc, type: 3}
+  m_Name: MoaiWorldShape
+  m_EditorClassIdentifier: 
+  randomize: 1
+  heightMapCompute: {fileID: 7200000, guid: aa2c1bf5c218a507abaab52140316927, type: 3}
+  seed: 7516
+  planet:
+    size: 40
+    detail: 8
+    ruggedness: 0.448
+    continentSize: 1.3
+  ocean:
+    depth: 20
+    bed: 0.376
+    smoothing: 0.3
+  continent:
+    mountainElevation: 7
+    mountainSize: 2
+    mountainSharpness: 2.45
+    mountainFrequency: 0.543
+    planeSize: 1.2
+    transitionSmoothing: 2
